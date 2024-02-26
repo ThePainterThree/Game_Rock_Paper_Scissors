@@ -4,13 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Protest+Guerrilla&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>Rock Paper Scissors Lizard Spock</title>
 </head>
 
 <body>
   <header class="title-container">
     <h3 class="title">Rock Paper Scissors Lizard Spock</h3>
-  </header>
+  </header><br/><br/>
     
     <div class="game-form">
     <form class="form" id="user-input" onsubmit="submitName()">
@@ -21,13 +30,12 @@
       </div>
     </form>
   
-  </div>
+  </div><br/><br/>
   
   <div class="container-game-area" >
     <div id="player-name"></div><br/>
-
     <fieldset class="game-options">
-      <legend>Choose your move:</legend>
+      <legend id="legend">Choose your move:</legend>
       <button id="rockButton">Rock</button>
       <button id="scissorsButton">Scissors</button>
       <button id="paperButton">Paper</button>
@@ -36,13 +44,13 @@
     </fieldset>
     <br/>
     <div id="computerChoice"></div><br/>
-    <div id="winnerMessage"></div>
+    <div id="winnerMessage"></div><br/>
   </div>
 
   <br/>
   <br/>
 
-  <a class="short-BigBangTheory" href="https://www.youtube.com/shorts/7IOsTX-y0D0" target="_blank">Sheldon explains the rules here!</a><br/>
+  <a class="short-BigBangTheory" href="https://www.youtube.com/shorts/7IOsTX-y0D0" target="_blank">Sheldon explains game rules 🖖</a><br/>
 
   <script src="./js/game.js"></script>
 </body>
