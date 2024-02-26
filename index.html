@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/styles.css">
+  <title>Rock Paper Scissors Lizard Spock</title>
+</head>
+
+<body>
+  <header class="title-container">
+    <h3 class="title">Rock Paper Scissors Lizard Spock</h3>
+  </header>
+    
+    <div class="game-form">
+    <form class="form" id="user-input" onsubmit="submitName()">
+      <div class="name-input">
+        
+        <input type="text" id="name" name="name" placeholder="Type in your name" autocomplete="name">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  
+  </div>
+  
+  <div class="container-game-area" >
+    <div id="player-name"></div><br/>
+
+    <fieldset class="game-options">
+      <legend>Choose your move:</legend>
+      <button id="rockButton">Rock</button>
+      <button id="scissorsButton">Scissors</button>
+      <button id="paperButton">Paper</button>
+      <button id="lizardButton">Lizard</button>
+      <button id="spockButton">Spock</button>
+    </fieldset>
+    <br/>
+    <div id="computerChoice"></div><br/>
+    <div id="winnerMessage"></div>
+  </div>
+
+  <br/>
+  <br/>
+
+  <a class="short-BigBangTheory" href="https://www.youtube.com/shorts/7IOsTX-y0D0" target="_blank">Sheldon explains the rules here!</a><br/>
+
+  <script src="./js/game.js"></script>
+</body>
+</html>
