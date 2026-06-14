@@ -1,6 +1,10 @@
 import { useState } from "react";
 import type { GameResult, PlayerMove } from "./types/game";
-import { getRandomComputerMove, andTheWinnerIs } from "./helpers/gameLogic";
+import {
+  getRandomComputerMove,
+  andTheWinnerIs,
+  moves,
+} from "./helpers/gameLogic";
 import { Button } from "@chakra-ui/react";
 
 function App() {
@@ -19,11 +23,11 @@ function App() {
 
   return (
     <div>
-      <Button onClick={() => playMove("rock")}>Rock</Button>
-      <Button onClick={() => playMove("paper")}>Paper</Button>
-      <Button onClick={() => playMove("scissors")}>Scissors</Button>
-      <Button onClick={() => playMove("lizard")}>Lizard</Button>
-      <Button onClick={() => playMove("spock")}>Spock</Button>
+      {moves.map((move) => (
+        <Button key={move} onClick={() => playMove(move)}>
+          {move}
+        </Button>
+      ))}
 
       {playerMove && (
         <>
