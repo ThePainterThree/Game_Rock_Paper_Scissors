@@ -8,16 +8,31 @@ function App() {
   const [computerMove, setComputerMove] = useState<PlayerMove | null>(null);
   const [gameResult, setGameResult] = useState<GameResult | null>(null);
 
-  function playMove(move: PlayerMove) {}
+  function playMove(move: PlayerMove) {
+    const computerPlay = getRandomComputerMove();
+    const result = andTheWinnerIs(move, computerPlay);
+
+    setPlayerMove(move);
+    setComputerMove(computerPlay);
+    setGameResult(result);
+  }
 
   return (
-    <section>
-      <Button>Rock</Button>
-      <Button>Paper</Button>
-      <Button>Scissors</Button>
-      <Button>Lizard</Button>
-      <Button>Spock</Button>
-    </section>
+    <div>
+      <Button onClick={() => playMove("rock")}>Rock</Button>
+      <Button onClick={() => playMove("paper")}>Paper</Button>
+      <Button onClick={() => playMove("scissors")}>Scissors</Button>
+      <Button onClick={() => playMove("lizard")}>Lizard</Button>
+      <Button onClick={() => playMove("spock")}>Spock</Button>
+
+      {playerMove && (
+        <>
+          <p>You played: {playerMove}</p>
+          <p>Computer played: {computerMove}</p>
+          <p>Result: {gameResult}</p>
+        </>
+      )}
+    </div>
   );
 }
 
