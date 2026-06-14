@@ -23,7 +23,7 @@ function App() {
 
   function displayMove(move: PlayerMove | null) {
     if (!move) return "";
-    return move.charAt(0).toUpperCase + move.slice(1);
+    return move.charAt(0).toUpperCase() + move.slice(1);
   }
 
   return (
