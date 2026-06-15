@@ -1,13 +1,14 @@
 import type { GameResult, PlayerMove } from "../types/game";
 
-export const moves: PlayerMove[] = [
-  "rock",
-  "paper",
-  "scissors",
-  "lizard",
-  "spock",
-];
+export const moveIcons: Record<PlayerMove, string>  = {
+  rock: "🪨",
+  paper: "📄",
+  scissors: "✂️",
+  lizard: "🦎",
+  spock: "🖖",
+};
 
+export const moves = Object.keys(moveIcons) as PlayerMove[]
 export const winningLogic: Record<PlayerMove, PlayerMove[]> = {
   scissors: ["paper", "lizard"],
   paper: ["rock", "spock"],
