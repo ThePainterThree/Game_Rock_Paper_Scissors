@@ -34,3 +34,10 @@ export function andTheWinnerIs(
   }
   return "lose";
 }
+
+  export function getResultMessage(result: GameResult | null) {
+    if (result === "win") return "You won!";
+    if (result === "lose") return "Computer won!";
+    if (result === "draw") return "It's a draw!";
+    return "Choose your move";
+  }

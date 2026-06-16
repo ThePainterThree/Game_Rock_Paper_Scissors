@@ -5,8 +5,9 @@ import {
   andTheWinnerIs,
   moves,
   moveIcons,
+  getResultMessage,
 } from "./helpers/gameLogic";
-import { Box, Button, HStack, VStack, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, VStack, Text, Heading } from "@chakra-ui/react";
 
 function App() {
   const [playerMove, setPlayerMove] = useState<PlayerMove | null>(null);
@@ -22,24 +23,27 @@ function App() {
   }
 
   function playMove(move: PlayerMove) {
-    setPlayerMove(move);
+    setPlayerMove(null);
     setGameResult(null);
     setComputerMove(null);
+    setDisplayedComputerMove(null);
     setSlotMachineEffect(true);
 
     let counter = 0;
+
     const interval = setInterval(() => {
       const randomComputerMove = getRandomComputerMove();
       setDisplayedComputerMove(randomComputerMove);
       counter++;
 
-      if (counter >= 12) {
+      if (counter >= 11) {
         clearInterval(interval);
         const selectedComputerMove = getRandomComputerMove();
         const result = andTheWinnerIs(move, selectedComputerMove);
 
         setDisplayedComputerMove(selectedComputerMove);
         setComputerMove(selectedComputerMove);
+        setPlayerMove(move);
         setGameResult(result);
         setSlotMachineEffect(false);
       }
@@ -47,46 +51,88 @@ function App() {
   }
 
   return (
-    <VStack gap={6}>
-      <HStack gap={3}>
-        {moves.map((move) => (
-          <Button
-            key={move}
-            onClick={() => playMove(move)}
-            disabled={slotMachineEffect}
+    <Box
+      display="flex"
+      flexDirection={{ base: "column", md: "row" }}
+      alignItems="center"
+      justifyContent="center"
+      gap={8}
+      width="100%"
+    >
+      <VStack gap={8} justify="center" minH="100vh">
+        <Heading textAlign="center" size="4xl">
+          Rock Paper Scissors Lizard Spock
+        </Heading>
+
+        <HStack gap={8} justify="center" align="center" wrap="wrap">
+          <Box
+            textAlign="center"
+            border="2px solid"
+            borderRadius="xl"
+            p={6}
+            minW="220px"
           >
-            {moveIcons[move]} {formatMoveName(move)}
-          </Button>
-        ))}
-      </HStack>
+            <Text fontWeight="bold" fontSize="3xl">
+              Player
+            </Text>
 
-      <Box textAlign="center" boxShadow={slotMachineEffect ? "lg" : "md"}>
-        <Text textStyle="sm"> Computer is choosing</Text>
-        <Text
-          textStyle="4xl"
-          fontWeight="bold"
-          color={slotMachineEffect ? "purple.400" : "green.300"}
-        >
-          {displayedComputerMove ? formatMoveName(displayedComputerMove) : "?"}
-        </Text>
-      </Box>
+            <Text fontSize="6xl">
+              {playerMove ? moveIcons[playerMove] : "?"}
+            </Text>
 
-      <div>
-        {playerMove && computerMove && gameResult && (
-          <section>
-            <p>You played: {formatMoveName(playerMove)}</p>
-            <p>Computer played: {formatMoveName(displayedComputerMove)}</p>
-            <h2>
-              {gameResult === "win"
-                ? "You won!"
-                : gameResult === "lose"
-                  ? "Computer won!"
-                  : "It's a draw!"}
-            </h2>
-          </section>
-        )}
-      </div>
-    </VStack>
+            <Text fontSize="md">
+              {playerMove ? formatMoveName(playerMove) : "Waiting"}
+            </Text>
+          </Box>
+
+          <Box textAlign="center" minW="180px">
+            <Text fontSize="5xl" fontWeight="bold">
+              VS
+            </Text>
+
+            <Text minH="40px" fontSize="2xl" fontWeight="bold">
+              {getResultMessage(gameResult)}
+            </Text>
+          </Box>
+
+          <Box
+            textAlign="center"
+            border="2px solid"
+            borderRadius="xl"
+            p={6}
+            minW="220px"
+          >
+            <Text fontWeight="bold" fontSize="3xl">
+              Computer
+            </Text>
+
+            <Text fontSize="6xl">
+              {displayedComputerMove ? moveIcons[displayedComputerMove] : "?"}
+            </Text>
+
+            <Text fontSize="md">
+              {slotMachineEffect
+                ? "Choosing..."
+                : displayedComputerMove
+                  ? formatMoveName(displayedComputerMove)
+                  : "Waiting"}
+            </Text>
+          </Box>
+        </HStack>
+
+        <HStack gap={3} justify="center" wrap="wrap">
+          {moves.map((move) => (
+            <Button
+              key={move}
+              onClick={() => playMove(move)}
+              disabled={slotMachineEffect}
+            >
+              {moveIcons[move]} {formatMoveName(move)}
+            </Button>
+          ))}
+        </HStack>
+      </VStack>
+    </Box>
   );
 }
 
