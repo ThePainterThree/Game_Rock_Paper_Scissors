@@ -1,6 +1,6 @@
 import type { GameResult, PlayerMove } from "../types/game";
 
-export const moveIcons: Record<PlayerMove, string>  = {
+export const moveIcons: Record<PlayerMove, string> = {
   rock: "🪨",
   paper: "📄",
   scissors: "✂️",
@@ -8,7 +8,7 @@ export const moveIcons: Record<PlayerMove, string>  = {
   spock: "🖖",
 };
 
-export const moves = Object.keys(moveIcons) as PlayerMove[]
+export const moves = Object.keys(moveIcons) as PlayerMove[];
 export const winningLogic: Record<PlayerMove, PlayerMove[]> = {
   scissors: ["paper", "lizard"],
   paper: ["rock", "spock"],
@@ -35,9 +35,9 @@ export function andTheWinnerIs(
   return "lose";
 }
 
-  export function getResultMessage(result: GameResult | null) {
-    if (result === "win") return "You won!";
-    if (result === "lose") return "Computer won!";
-    if (result === "draw") return "It's a draw!";
-    return "Choose your move";
-  }
+export function getResultMessage(result: GameResult | null) {
+  if (result === "win") return "You won!";
+  if (result === "lose") return "Computer won!";
+  if (result === "draw") return "It's a draw!";
+  return "Choose your move";
+}
