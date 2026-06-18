@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { GameResult, PlayerMove } from "./types/game";
+import type { GameResult, PlayerMove, Score } from "./types/game";
 import {
   getRandomComputerMove,
   andTheWinnerIs,
@@ -16,6 +16,11 @@ function App() {
   const [slotMachineEffect, setSlotMachineEffect] = useState(false);
   const [displayedComputerMove, setDisplayedComputerMove] =
     useState<PlayerMove | null>(null);
+  const [score, setScore] = useState<Score>({
+    player: 0,
+    computer: 0,
+    draws: 0,
+  });
 
   function formatMoveName(move: PlayerMove | null) {
     if (!move) return "";
@@ -46,6 +51,16 @@ function App() {
         setPlayerMove(move);
         setGameResult(result);
         setSlotMachineEffect(false);
+
+        setScore((previousScore) => {
+          if (result === "win") {
+            return { ...previousScore, player: previousScore.player + 1 };
+          }
+          if (result === "lose") {
+            return { ...previousScore, computer: previousScore.computer + 1 };
+          }
+          return { ...previousScore, draws: previousScore.draws + 1 };
+        });
       }
     }, 100);
   }
